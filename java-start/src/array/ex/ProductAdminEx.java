@@ -7,10 +7,9 @@ public class ProductAdminEx {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        String[] productNames = new String[10];
-
-        int[] productPrices = new int[10];
-
+        int maxProduct = 10;
+        String[] productNames = new String[maxProduct];
+        int[] productPrices = new int[maxProduct];
         int productCount = 0;
 
         while (true) {
@@ -19,20 +18,41 @@ public class ProductAdminEx {
             System.out.print("메뉴를 선택하세요:");
 
             int menu = sc.nextInt();
+            sc.nextLine();
 
             switch (menu) {
                 case 1:
+                    if (productCount == maxProduct) {
+                        System.out.println("더 이상 상품을 등록할 수 없습니다.");
+                        continue;
+                    }
+
                     System.out.print("상품 이름을 입력하세요:");
-                    String productName = sc.next();
+                    productNames[productCount] = sc.nextLine();
 
-                    productNames[productCount] = productName;
+                    System.out.print("상품 가격을 입력하세요:");
+                    productPrices[productCount] = sc.nextInt();
 
-                    System.out.print();
+                    productCount++;
 
                     break;
 
                 case 2:
-                    for ()
+                    if (productCount == 0) {
+                        System.out.println("등록된 상품이 없습니다.");
+                        continue;
+                    }
+
+                    for (int i = 0; i < productCount; i++) {
+                        System.out.println(productNames[i] + ": " + productPrices[i]);
+                    }
+
+                    break;
+
+                case 3:
+                    System.out.println("프로그램을 종료합니다.");
+
+                    return;
             }
         }
     }
