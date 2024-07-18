@@ -5,12 +5,13 @@ public class ShoppingCart {
     private int itemCount;
 
     public void addItem(Item item) {
-        if (itemCount < items.length) {
-            items[itemCount] = item;
-            itemCount++;
-        } else {
+        if (itemCount >= items.length) {
             System.out.println("장바구니가 가득 찼습니다.");
+            return;
         }
+
+        items[itemCount] = item;
+        itemCount++;
     }
 
     public void displayItems() {
